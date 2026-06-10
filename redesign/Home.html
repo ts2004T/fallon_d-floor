@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StatPadder™ — Football analytics, fact-checked.</title>
+<script>try{var t=localStorage.getItem('statpadder_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* hero */
+  .hero{text-align:center;padding:60px 0 18px;position:relative;}
+  .hero .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);
+    padding:7px 15px;border-radius:30px;font-size:13.5px;font-weight:600;color:var(--ink-soft);box-shadow:var(--shadow-card);}
+  .hero h1{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;line-height:1;
+    font-size:clamp(40px,6.2vw,78px);margin:22px auto 0;max-width:14ch;text-wrap:balance;}
+  .hero h1 .pop{color:var(--accent-deep);position:relative;white-space:nowrap;}
+  .hero .sub{font-size:clamp(18px,2vw,22px);color:var(--ink-soft);margin:18px auto 0;max-width:42ch;font-weight:500;}
+  .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px;}
+  .hero .fine{font-size:13.5px;color:var(--ink-faint);margin-top:22px;max-width:50ch;margin-left:auto;margin-right:auto;}
+
+  /* bento */
+  .bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-areas:"live live goat" "player fact goat";gap:22px;}
+  .b-live{grid-area:live;} .b-goat{grid-area:goat;} .b-player{grid-area:player;} .b-fact{grid-area:fact;}
+
+  .scoreline{display:flex;align-items:center;justify-content:center;gap:30px;margin:18px 0 6px;}
+  .team{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .team .nm{font-weight:600;font-size:17px;}
+  .vs{font-family:var(--font-num);font-weight:700;font-size:58px;line-height:.9;letter-spacing:-.02em;
+    display:inline-flex;align-items:center;gap:14px;white-space:nowrap;}
+  .vs .dash{color:var(--ink-faint);font-weight:500;}
+  .minute{font-family:var(--font-num);font-weight:600;font-size:14px;color:var(--ink-soft);text-align:center;margin-top:4px;}
+
+  .factbig{font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.18;margin:10px 0 0;letter-spacing:-.01em;}
+  @media (max-width:820px){
+    .bento{grid-template-columns:1fr;grid-template-areas:"live" "goat" "player" "fact";}
+  }
+</style>
+</head>
+<body>
+<div class="glows"></div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="Home.html">
+      <svg class="ball" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.3" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="16,9.4 20.8,12.9 19,18.5 13,18.5 11.2,12.9" fill="var(--accent)"/><path d="M16 9.4V4.1M20.8 12.9L26.1 10.3M19 18.5L22.8 23.5M13 18.5L9.2 23.5M11.2 12.9L5.9 10.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      StatPadder<span class="tm">™</span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="Home.html" class="active">Dashboard</a>
+      <a href="Live Match.html">Live Match</a>
+      <a href="GOAT Audit.html">GOAT Audit</a>
+      <a href="Analytics.html">Analytics</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" data-toggle-theme title="Toggle theme" aria-label="Toggle theme"><span data-theme-icon>🌙</span></button>
+      <a class="icon-btn" href="#" title="View on GitHub" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="nav-burger" data-nav-toggle aria-expanded="false" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="nav-mobile" aria-label="Primary, mobile">
+    <a href="Home.html" class="active">Dashboard</a>
+    <a href="Live Match.html">Live Match</a>
+    <a href="GOAT Audit.html">GOAT Audit</a>
+    <a href="Analytics.html">Analytics</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="kicker reveal">Football, fact-checked — without the spreadsheet face.</span>
+    <h1 class="reveal">Can your favorite player do it on a <span class="pop">rainy Tuesday?</span></h1>
+    <p class="sub reveal">Separating Big Game Players from Stat Merchants.</p>
+    <div class="cta reveal">
+      <a class="btn primary" href="GOAT Audit.html">Start GOAT Audit</a>
+      <a class="btn" href="Live Match.html">View Live Match</a>
+    </div>
+    <p class="fine reveal">A playful football analytics project built for curiosity, conversation, and a little harmless chaos.</p>
+  </section>
+
+  <!-- BENTO: the 4 questions -->
+  <section class="section" style="padding-top:30px;">
+    <div class="bento">
+
+      <!-- LIVE -->
+      <a class="card pad hoverable b-live reveal" href="Live Match.html">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span class="eyebrow">Live right now</span>
+          <span class="live"><span class="dot"></span>74'</span>
+        </div>
+        <div class="scoreline">
+          <div class="team">
+            <div class="badge-crest" style="width:74px;height:74px;font-size:18px;background:linear-gradient(140deg,#FA855A,#62C4DA);">ENG</div>
+            <span class="nm">England</span>
+          </div>
+          <div style="text-align:center;">
+            <div class="vs"><span>2</span><span class="dash">–</span><span>1</span></div>
+          </div>
+          <div class="team">
+            <div class="badge-crest" style="width:74px;height:74px;font-size:18px;background:linear-gradient(140deg,#7FCBDD,#8AD4E4);">FRA</div>
+            <span class="nm">France</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+          <span class="muted" style="font-size: 14px; ">Kane 22' &nbsp;·&nbsp; Bellingham 67' &nbsp;·&nbsp; Mbappé 41'</span>
+          <span class="linkmore">Tap to see what happened →</span>
+        </div>
+      </a>
+
+      <!-- GOAT (tall) -->
+      <div class="card pad b-goat reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span class="eyebrow">🐐 Current GOAT</span>
+          <span class="chip pink">BGPI</span>
+        </div>
+        <div style="margin-top:8px;">
+          <div class="rrow"><span class="rk">1</span><div class="av a1" style="width:40px;height:40px;font-size:13px;">ME</div><span class="nm">Messi</span><span class="meta bgpi" style="font-size:26px;">94</span></div>
+          <div class="rrow"><span class="rk">2</span><div class="av a2" style="width:40px;height:40px;font-size:13px;">RO</div><span class="nm">Ronaldo</span><span class="meta bgpi" style="font-size:26px;">91</span></div>
+          <div class="rrow"><span class="rk">3</span><div class="av a3" style="width:40px;height:40px;font-size:13px;">MB</div><span class="nm">Mbappé</span><span class="meta bgpi" style="font-size:26px;">77</span></div>
+          <div class="rrow"><span class="rk">4</span><div class="av a4" style="width:40px;height:40px;font-size:13px;">HA</div><span class="nm">Haaland</span><span class="meta bgpi" style="font-size:26px;">69</span></div>
+        </div>
+        <a class="linkmore" href="GOAT Audit.html" style="margin-top:14px;">View why →</a>
+      </div>
+
+      <!-- PLAYER OF THE DAY -->
+      <div class="card pad b-player reveal">
+        <span class="eyebrow">Player of the day</span>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:14px;">
+          <div class="av a1" style="width:72px;height:72px;font-size:22px;">JB</div>
+          <div>
+            <div style="font-weight:700;font-size:21px;">Jude Bellingham</div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-top:2px;">
+              <span class="bgpi" style="font-size:32px;">94</span><span class="muted" style="font-size:13px;">BGPI</span>
+              <span class="chip mint">Winner 89'</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRENDING FACT -->
+      <div class="card pad b-fact reveal">
+        <span class="eyebrow">Trending fact</span>
+        <p class="factbig">Ronaldo outperformed his expected goals in big matches by <span style="color:var(--accent-deep);">21%</span>.</p>
+        <a class="linkmore" href="Analytics.html" style="margin-top:12px;">Learn more →</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div style="flex:1;min-width:220px;">
+      <a class="brand" href="Home.html"><svg class="ball" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.3" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="16,9.4 20.8,12.9 19,18.5 13,18.5 11.2,12.9" fill="var(--accent)"/><path d="M16 9.4V4.1M20.8 12.9L26.1 10.3M19 18.5L22.8 23.5M13 18.5L9.2 23.5M11.2 12.9L5.9 10.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> StatPadder<span class="tm">™</span></a>
+      <p style="margin: 12px 0 0; max-width: 34ch; ">Football performance analytics. Big-game impact, quantified from event-level match data.</p>
+    </div>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <strong style="color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.05em;">Explore</strong>
+        <a href="Live Match.html">Live Match</a><a href="GOAT Audit.html">GOAT Audit</a><a href="Analytics.html">Analytics</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <strong style="color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.05em;">Built with</strong>
+        <span>Python · SQL</span><span>APIs · Power BI</span><span>Streamlit</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

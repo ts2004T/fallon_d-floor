@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Data (too large for GitHub)
+data/raw/statsbomb/
+
+# Node
+frontend/node_modules/
+frontend/.next/
+
+# Misc
+*.DS_Store

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analytics — StatPadder™</title>
+<script>try{var t=localStorage.getItem('statpadder_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .pagehead{padding:42px 0 6px;}
+  .pagehead h1{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,4vw,46px);margin:10px 0 0;letter-spacing:-.01em;}
+  .pagehead .sub{color:var(--ink-soft);font-size:17px;margin:10px 0 0;max-width:60ch;}
+  .stackchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+
+  .a-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .span2{grid-column:1 / -1;}
+  @media (max-width:880px){.a-grid{grid-template-columns:1fr;}.span2{grid-column:auto;}}
+
+  .ch-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px;}
+  .ch-title{font-weight:700;font-size:18px;}
+  .ch-sub{color:var(--ink-soft);font-size:13.5px;margin-top:3px;}
+
+  .axis{stroke:var(--line);stroke-width:1;}
+  .grid-l{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4;}
+  .alab{font-family:var(--font-num);font-size:10px;fill:var(--ink-faint);}
+
+  .barwrap{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;height:100%;}
+  .barwrap .cnt{font-family:var(--font-num);font-weight:700;font-size:13px;color:var(--ink-soft);}
+  .barwrap .lab{font-size:11px;color:var(--ink-faint);font-family:var(--font-num);}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dotk{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media (max-width:620px){.statgrid{grid-template-columns:repeat(2,1fr);}}
+  .stile{background:var(--bg-2);border-radius:16px;padding:16px 18px;}
+  .stile .v{font-family:var(--font-num);font-weight:700;font-size:27px;}
+  .stile .k{font-size:12.5px;color:var(--ink-soft);margin-top:3px;}
+
+  .poss{display:flex;height:20px;border-radius:30px;overflow:hidden;margin:6px 0 4px;}
+  .poss .a{background:linear-gradient(90deg,var(--accent),#FBA37F);}
+  .poss .b{background:linear-gradient(90deg,#8AD4E4,#7FCBDD);}
+
+  .heat{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(7,1fr);gap:3px;
+    aspect-ratio:16/9;border-radius:14px;padding:8px;background:var(--card-2);border:1px solid var(--line);position:relative;}
+  .heat i{border-radius:3px;background:var(--accent);}
+</style>
+</head>
+<body>
+<div class="glows"></div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="Home.html">
+      <svg class="ball" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.3" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="16,9.4 20.8,12.9 19,18.5 13,18.5 11.2,12.9" fill="var(--accent)"/><path d="M16 9.4V4.1M20.8 12.9L26.1 10.3M19 18.5L22.8 23.5M13 18.5L9.2 23.5M11.2 12.9L5.9 10.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      StatPadder<span class="tm">™</span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="Home.html">Dashboard</a>
+      <a href="Live Match.html">Live Match</a>
+      <a href="GOAT Audit.html">GOAT Audit</a>
+      <a href="Analytics.html" class="active">Analytics</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" data-toggle-theme title="Toggle theme" aria-label="Toggle theme"><span data-theme-icon>🌙</span></button>
+      <a class="icon-btn" href="#" title="View on GitHub" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="nav-burger" data-nav-toggle aria-expanded="false" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="nav-mobile" aria-label="Primary, mobile">
+    <a href="Home.html">Dashboard</a>
+    <a href="Live Match.html">Live Match</a>
+    <a href="GOAT Audit.html">GOAT Audit</a>
+    <a href="Analytics.html" class="active">Analytics</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="pagehead reveal">
+    <span class="eyebrow">Analytics</span>
+    <h1>The maths behind the jokes.</h1>
+    <p class="sub">Same playful brand, fewer punchlines. This is the model room — distributions, scatter plots, momentum curves, and the occasional exposed stat merchant.</p>
+    <div class="stackchips">
+      <span class="chip pink">Python</span><span class="chip lav">SQL</span><span class="chip">Power BI</span><span class="chip">REST APIs</span><span class="chip">Streamlit</span>
+    </div>
+  </section>
+
+  <!-- BGPI formula explainer -->
+  <section class="section" style="padding-top:26px;">
+    <div class="card pad reveal span2" style="display:flex;gap:20px;align-items:center;background:linear-gradient(150deg,var(--accent-soft),var(--card) 60%);">
+      <div class="eyebrow" style="font-size:11.5px;">BGPI</div>
+      <p style="margin:0;font-size:17px;line-height:1.5;flex:1;">
+        <strong>BGPI</strong> combines <strong>goals</strong>, <strong>assists</strong>, <strong>xG efficiency</strong>, <strong>match importance</strong>, and <strong>game-winning contributions</strong> into a single 0–100 score.
+        <span class="muted">Weighted so a winner in a cup final outranks a consolation tap-in at 4–0.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- charts grid -->
+  <section class="section" style="padding-top:22px;">
+    <div class="a-grid">
+
+      <!-- 1. BGPI distribution -->
+      <div class="card pad reveal">
+        <div class="ch-head">
+          <div><div class="ch-title">Big Game Index — distribution</div><div class="ch-sub">Where 320 audited players land on the 0–100 scale</div></div>
+          <span class="chip pink">μ = 71</span>
+        </div>
+        <div class="bars">
+          <div class="barwrap"><span class="cnt">3</span><div class="bartrack"><div class="bar" style="height:14%;"></div></div><span class="lab">40–50</span></div>
+          <div class="barwrap"><span class="cnt">8</span><div class="bartrack"><div class="bar" style="height:36%;"></div></div><span class="lab">50–60</span></div>
+          <div class="barwrap"><span class="cnt">14</span><div class="bartrack"><div class="bar" style="height:64%;"></div></div><span class="lab">60–70</span></div>
+          <div class="barwrap"><span class="cnt">22</span><div class="bartrack"><div class="bar" style="height:100%;"></div></div><span class="lab">70–80</span></div>
+          <div class="barwrap"><span class="cnt">13</span><div class="bartrack"><div class="bar" style="height:59%;"></div></div><span class="lab">80–90</span></div>
+          <div class="barwrap"><span class="cnt">5</span><div class="bartrack"><div class="bar lav" style="height:23%;"></div></div><span class="lab">90–100</span></div>
+        </div>
+      </div>
+
+      <!-- 2. Top 10 clutch -->
+      <div class="card pad reveal">
+        <div class="ch-head">
+          <div><div class="ch-title">Top 10 clutch players</div><div class="ch-sub">Ranked by Big Game Index, this season</div></div>
+          <span class="chip lav">🐐</span>
+        </div>
+        <div style="margin-top:-4px;">
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Messi</span><div class="hbar-track"><div class="hbar-fill" style="width:94%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">94</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Ronaldo</span><div class="hbar-track"><div class="hbar-fill" style="width:91%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">91</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Bellingham</span><div class="hbar-track"><div class="hbar-fill" style="width:88%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">88</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Yamal</span><div class="hbar-track"><div class="hbar-fill" style="width:84%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">84</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Vinícius</span><div class="hbar-track"><div class="hbar-fill" style="width:82%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">82</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Kane</span><div class="hbar-track"><div class="hbar-fill" style="width:80%;"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--accent-deep);">80</span></div>
+          <div class="hbar-row"><span style="font-weight:600;font-size:14px;">Haaland</span><div class="hbar-track"><div class="hbar-fill" style="width:69%;background:linear-gradient(90deg,#FFC2A0,var(--negative));"></div></div><span class="tick" style="text-align:right;font-weight:700;color:var(--negative);">69</span></div>
+        </div>
+      </div>
+
+      <!-- 3. BGPI vs goals scatter -->
+      <div class="card pad reveal">
+        <div class="ch-head">
+          <div><div class="ch-title">BGPI vs total goals</div><div class="ch-sub">Bottom-right = lots of goals, low impact (the danger zone)</div></div>
+        </div>
+        <svg viewBox="0 0 360 240" width="100%" style="display:block;">
+          <line class="axis" x1="40" y1="20" x2="40" y2="200"/>
+          <line class="axis" x1="40" y1="200" x2="345" y2="200"/>
+          <line class="grid-l" x1="40" y1="110" x2="345" y2="110"/>
+          <text class="alab" x="6" y="28">100</text>
+          <text class="alab" x="12" y="114">75</text>
+          <text class="alab" x="14" y="204">50</text>
+          <text class="alab" x="332" y="216">goals →</text>
+          <text class="alab" x="44" y="216">0</text>
+          <!-- merchant zone label -->
+          <text class="alab" x="250" y="160" style="fill:var(--negative);font-weight:700;">stat merchants</text>
+          <!-- dots -->
+          <circle cx="265" cy="42" r="6" fill="#FA855A"/><text class="alab" x="252" y="34">Messi</text>
+          <circle cx="295" cy="52" r="6" fill="#FA855A"/><text class="alab" x="300" y="50">Ronaldo</text>
+          <circle cx="175" cy="63" r="6" fill="#FA855A"/><text class="alab" x="150" y="58">Bellingham</text>
+          <circle cx="145" cy="78" r="6" fill="#8AD4E4"/><text class="alab" x="120" y="74">Yamal</text>
+          <circle cx="160" cy="85" r="6" fill="#8AD4E4"/>
+          <circle cx="220" cy="92" r="6" fill="#8AD4E4"/><text class="alab" x="226" y="90">Kane</text>
+          <circle cx="250" cy="103" r="6" fill="#8AD4E4"/><text class="alab" x="256" y="101">Mbappé</text>
+          <circle cx="235" cy="132" r="6" fill="#C93638"/><text class="alab" x="180" y="134">Lewandowski</text>
+          <circle cx="310" cy="132" r="7" fill="#C93638"/><text class="alab" x="286" y="150" style="fill:var(--negative);font-weight:700;">Haaland</text>
+        </svg>
+      </div>
+
+      <!-- 4. xG vs actual line -->
+      <div class="card pad reveal">
+        <div class="ch-head">
+          <div><div class="ch-title">xG vs actual goals</div><div class="ch-sub">Bellingham, last 10 matchweeks</div></div>
+        </div>
+        <svg viewBox="0 0 360 240" width="100%" style="display:block;">
+          <line class="axis" x1="30" y1="20" x2="30" y2="190"/>
+          <line class="axis" x1="30" y1="190" x2="352" y2="190"/>
+          <line class="grid-l" x1="30" y1="105" x2="352" y2="105"/>
+          <text class="alab" x="8" y="24">4</text>
+          <text class="alab" x="8" y="109">2</text>
+          <text class="alab" x="8" y="194">0</text>
+          <!-- xG dashed -->
+          <polyline fill="none" stroke="#8AD4E4" stroke-width="2.5" stroke-dasharray="5 5" stroke-linecap="round" stroke-linejoin="round"
+            points="30,139 66,122 101,114 137,101 172,88 208,80 243,92 279,84 314,105 350,97"/>
+          <!-- actual solid -->
+          <polyline fill="none" stroke="#FA855A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+            points="30,148 66,105 101,148 137,63 172,105 208,20 243,105 279,63 314,148 350,63"/>
+          <g fill="#FA855A"><circle cx="208" cy="20" r="4"/><circle cx="350" cy="63" r="4"/></g>
+        </svg>
+        <div class="legend" style="margin-top:10px;">
+          <span><i class="dotk" style="background:#FA855A;"></i>Actual goals</span>
+          <span><i class="dotk" style="background:#8AD4E4;"></i>Expected (xG)</span>
+        </div>
+      </div>
+
+      <!-- 5. Live BGPI momentum (full width) -->
+      <div class="card pad reveal span2">
+        <div class="ch-head">
+          <div><div class="ch-title">Live BGPI momentum</div><div class="ch-sub">Bellingham's index across El Clásico — note the jumps at each goal</div></div>
+          <span class="live"><span class="dot"></span>Live</span>
+        </div>
+        <svg viewBox="0 0 720 210" width="100%" style="display:block;">
+          <defs>
+            <linearGradient id="mom" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FA855A" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#FA855A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line class="grid-l" x1="20" y1="50" x2="700" y2="50"/>
+          <line class="grid-l" x1="20" y1="115" x2="700" y2="115"/>
+          <line class="axis" x1="20" y1="180" x2="700" y2="180"/>
+          <!-- area -->
+          <path d="M20,125 L186,125 L330,70 L473,75 L609,79 L617,38 L700,38 L700,180 L20,180 Z" fill="url(#mom)"/>
+          <!-- line -->
+          <path d="M20,125 L186,125 L330,70 L473,75 L609,79 L617,38 L700,38" fill="none" stroke="#FA855A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- goal markers -->
+          <g><circle cx="330" cy="70" r="5" fill="#fff" stroke="#FA855A" stroke-width="3"/><text class="alab" x="316" y="60" style="font-weight:700;">41'</text></g>
+          <g><circle cx="617" cy="38" r="5" fill="#fff" stroke="#FA855A" stroke-width="3"/><text class="alab" x="600" y="28" style="font-weight:700;">78'</text></g>
+          <text class="alab" x="20" y="198">KO</text><text class="alab" x="350" y="198">45'</text><text class="alab" x="690" y="198">90'</text>
+        </svg>
+      </div>
+
+      <!-- 6. Match analytics (full width) -->
+      <div class="card pad reveal span2">
+        <div class="ch-head">
+          <div><div class="ch-title">Match analytics — Real Madrid vs Barcelona</div><div class="ch-sub">Team-level context behind the player numbers</div></div>
+          <span class="chip">78' · live</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:start;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:2px;">
+              <span style="color:var(--accent-deep);">Real Madrid 46%</span><span class="muted">Possession</span><span style="color:var(--alt-deep);">54% Barcelona</span>
+            </div>
+            <div class="poss"><div class="a" style="width:46%;"></div><div class="b" style="width:54%;"></div></div>
+            <div class="statgrid" style="margin-top:16px;">
+              <div class="stile"><div class="v">14 <span style="font-size:14px;color:var(--ink-faint);">/ 11</span></div><div class="k">Shots (RMA / BAR)</div></div>
+              <div class="stile"><div class="v">2.1 <span style="font-size:14px;color:var(--ink-faint);">/ 1.8</span></div><div class="k">xG (RMA / BAR)</div></div>
+              <div class="stile"><div class="v">89%</div><div class="k">Pass accuracy</div></div>
+              <div class="stile"><div class="v">6</div><div class="k">Big chances</div></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="ch-sub" style="margin-bottom:8px;">Bellingham — touch heatmap <span class="faint">(attacking left → right)</span></div>
+            <div class="heat" id="heat"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div style="flex:1;min-width:220px;">
+      <a class="brand" href="Home.html"><svg class="ball" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.3" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="16,9.4 20.8,12.9 19,18.5 13,18.5 11.2,12.9" fill="var(--accent)"/><path d="M16 9.4V4.1M20.8 12.9L26.1 10.3M19 18.5L22.8 23.5M13 18.5L9.2 23.5M11.2 12.9L5.9 10.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> StatPadder<span class="tm">™</span></a>
+      <p style="margin:12px 0 0;max-width:34ch;">Football performance analytics. Big-game impact, quantified from event-level match data.</p>
+    </div>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <strong style="color: var(--ink); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; ">Explore</strong>
+        <a href="Home.html">Home</a><a href="Live Match.html">Live Match</a><a href="GOAT Audit.html">GOAT Audit</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <strong style="color: var(--ink); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; ">Built with</strong>
+        <span>Python · SQL</span><span>APIs · Power BI</span><span>Streamlit</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // build a believable attacking-third heatmap (12x7 cells, intensity rises toward the right)
+  (function(){
+    var heat=document.getElementById('heat');if(!heat)return;
+    var cols=12, rows=7;
+    for(var r=0;r<rows;r++){
+      for(var c=0;c<cols;c++){
+        var midBias=1-Math.abs((r-(rows-1)/2)/((rows-1)/2)); // higher in vertical centre
+        var rightBias=Math.pow(c/(cols-1),1.6);              // higher toward attacking right
+        var v=Math.max(0, rightBias*0.78*midBias + (Math.random()*0.12));
+        var i=document.createElement('i');
+        i.style.opacity=(0.05+v*0.95).toFixed(2);
+        heat.appendChild(i);
+      }
+    }
+  })();
+</script>
+<script src="app.js"></script>
+</body>
+</html>
