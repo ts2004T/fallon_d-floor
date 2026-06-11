@@ -1,0 +1,14 @@
+.callout {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: linear-gradient(160deg, var(--alt-soft), var(--card) 55%);
+}
+
+.text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  flex: 1 1 320px;
+}
