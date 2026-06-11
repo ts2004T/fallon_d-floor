@@ -1,0 +1,112 @@
+.head {
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  margin: 6px 0 4px;
+}
+
+.question {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 110px 1fr 56px;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-size: 13.5px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  height: 16px;
+  background: var(--bg-2);
+  border-radius: 4px;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  bottom: -2px;
+  width: 1px;
+  background: var(--line-strong);
+}
+
+.bar {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-radius: 3px;
+}
+
+.bar.positive {
+  left: 50%;
+  background: var(--positive);
+}
+
+.bar.negative {
+  right: 50%;
+  background: var(--negative);
+}
+
+.value {
+  font-family: var(--font-num);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.value.positive {
+  color: var(--positive);
+}
+
+.value.negative {
+  color: var(--negative);
+}
+
+.empty {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}

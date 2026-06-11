@@ -1,0 +1,75 @@
+.head {
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  margin: 6px 0 4px;
+}
+
+.question {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0;
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 200px;
+  padding-top: 24px;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 6px;
+}
+
+.count {
+  font-family: var(--font-num);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.track {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
+  min-height: 2px;
+  transition: height 0.3s ease;
+}
+
+.range {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-family: var(--font-num);
+  white-space: nowrap;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
