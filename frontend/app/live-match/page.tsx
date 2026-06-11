@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MatchSelector from "@/components/match-intelligence/MatchSelector";
