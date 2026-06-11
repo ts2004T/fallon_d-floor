@@ -34,7 +34,7 @@ export default function BGPIDistribution({ leaderboard }: BGPIDistributionProps)
         ))}
       </div>
 
-      <table className={styles.srOnly}>
+      <table className="sr-only">
         <caption>BGPI distribution data table</caption>
         <thead>
           <tr><th>BGPI range</th><th>Players</th></tr>

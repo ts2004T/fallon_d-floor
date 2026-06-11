@@ -23,7 +23,13 @@ export default function BGPIMeter({ value, compareValue, max = 100 }: BGPIMeterP
       >
         <div className={styles.fill} style={{ width: `${fillPct}%` }} />
         {markerPct != null && (
-          <div className={styles.marker} style={{ left: `${markerPct}%` }} title={`Regular form: ${compareValue}`} />
+          <div
+            className={styles.marker}
+            style={{ left: `${markerPct}%` }}
+            role="img"
+            aria-label={`Regular-season BGPI: ${compareValue}`}
+            title={`Regular form: ${compareValue}`}
+          />
         )}
       </div>
       <div className={styles.legend}>

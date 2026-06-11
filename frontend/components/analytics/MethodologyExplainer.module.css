@@ -34,7 +34,7 @@
   font-family: var(--font-num);
   font-size: 12px;
   font-weight: 700;
-  color: #fff;
+  color: var(--on-accent);
   white-space: nowrap;
   overflow: hidden;
 }

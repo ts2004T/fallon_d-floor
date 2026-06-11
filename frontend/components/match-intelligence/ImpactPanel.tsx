@@ -68,7 +68,7 @@ export default function ImpactPanel({ match, players }: ImpactPanelProps) {
             ))}
           </div>
 
-          <table className={styles.srOnly}>
+          <table className="sr-only">
             <caption>BGPI component breakdown for the top performers in this match</caption>
             <thead>
               <tr>

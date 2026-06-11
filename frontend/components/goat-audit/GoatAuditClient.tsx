@@ -46,6 +46,12 @@ export default function GoatAuditClient({ players }: GoatAuditClientProps) {
         />
       </div>
 
+      <p className="sr-only" role="status" aria-live="polite">
+        {filtered.length > 0
+          ? `${filtered.length} player${filtered.length === 1 ? "" : "s"} found.`
+          : "No players match current filters."}
+      </p>
+
       {filtered.length > 0 ? (
         <div className={styles.grid}>
           {filtered.map((player, i) => (

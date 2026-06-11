@@ -50,7 +50,9 @@ export default function PlayerCard({ player, index }: PlayerCardProps) {
             <div className={styles.k}>Assists</div>
           </div>
           <div className={styles.ministat}>
-            <div className={styles.v}>{xgDiff > 0 ? "+" : ""}{xgDiff.toFixed(1)}</div>
+            <div className={`${styles.v} ${xgDiff > 0 ? "up" : xgDiff < 0 ? "down" : ""}`}>
+              {xgDiff > 0 ? "+" : ""}{xgDiff.toFixed(1)}
+            </div>
             <div className={styles.k}>xG over-perf.</div>
           </div>
         </div>

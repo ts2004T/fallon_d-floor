@@ -88,7 +88,7 @@ export default function PerformanceComparison({ leaderboard }: PerformanceCompar
         </p>
       )}
 
-      <table className={styles.srOnly}>
+      <table className="sr-only">
         <caption>Big-game vs regular-season BGPI by player</caption>
         <thead>
           <tr><th>Player</th><th>Regular BGPI</th><th>Big-Game BGPI</th><th>Uplift</th><th>Category</th></tr>

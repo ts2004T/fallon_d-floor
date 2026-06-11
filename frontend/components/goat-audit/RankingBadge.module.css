@@ -2,8 +2,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #23212a;
+  background: var(--badge-surface);
+  color: var(--badge-ink);
   font-family: var(--font-num);
   font-weight: 700;
   font-size: 13px;

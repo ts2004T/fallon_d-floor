@@ -98,14 +98,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.value.positive {
-  color: var(--positive);
-}
-
-.value.negative {
-  color: var(--negative);
-}
-
 .empty {
   color: var(--ink-soft);
   font-size: 13.5px;
