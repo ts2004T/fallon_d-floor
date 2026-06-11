@@ -18,6 +18,9 @@ export default function DashboardHero() {
         <Link href="/goat-audit" className="btn primary">
           🐐 Start GOAT Audit
         </Link>
+        <Link href="/live-match" className="btn">
+          🔍 Match Intelligence
+        </Link>
         <Link href="/analytics" className="btn">
           📊 View Analytics
         </Link>

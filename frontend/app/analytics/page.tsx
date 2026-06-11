@@ -1,23 +1,12 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MethodologyExplainer from "@/components/analytics/MethodologyExplainer";
-import AnalyticsKpiStrip from "@/components/analytics/AnalyticsKpiStrip";
-import BGPIDistribution from "@/components/analytics/BGPIDistribution";
-import PerformanceComparison from "@/components/analytics/PerformanceComparison";
-import XGAnalysis from "@/components/analytics/XGAnalysis";
-import PlayerDrilldown from "@/components/analytics/PlayerDrilldown";
-import InsightsPanel from "@/components/analytics/InsightsPanel";
-import { getLeaderboard, getStatsSummary } from "@/lib/api";
+import AnalyticsDataSections from "@/components/analytics/AnalyticsDataSections";
+import AnalyticsSkeleton from "@/components/analytics/AnalyticsSkeleton";
 import styles from "./page.module.css";
 
-export default async function AnalyticsPage() {
-  const [stats, leaderboard] = await Promise.all([
-    getStatsSummary(),
-    getLeaderboard(100, 10),
-  ]);
-
-  const players = leaderboard.map(({ player_id, name, position }) => ({ player_id, name, position }));
-
+export default function AnalyticsPage() {
   return (
     <>
       <Navbar />
@@ -35,18 +24,9 @@ export default async function AnalyticsPage() {
           <div className={styles.stack}>
             <MethodologyExplainer />
 
-            <AnalyticsKpiStrip stats={stats} leaderboard={leaderboard} />
-
-            <div className={styles.grid2}>
-              <BGPIDistribution leaderboard={leaderboard} />
-              <PerformanceComparison leaderboard={leaderboard} />
-            </div>
-
-            <XGAnalysis leaderboard={leaderboard} />
-
-            <PlayerDrilldown players={players} />
-
-            <InsightsPanel leaderboard={leaderboard} />
+            <Suspense fallback={<AnalyticsSkeleton />}>
+              <AnalyticsDataSections />
+            </Suspense>
           </div>
         </section>
       </main>

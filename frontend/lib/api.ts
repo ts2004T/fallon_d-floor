@@ -1,3 +1,7 @@
+// Used for both server-side fetches (Next.js server -> API) and the
+// client-side fetch in PlayerDrilldown (browser -> API). In production,
+// NEXT_PUBLIC_API_URL must point to a publicly reachable, CORS-enabled
+// API origin — see ALLOWED_ORIGINS in the API's environment config.
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface LeaderboardPlayer {

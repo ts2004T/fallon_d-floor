@@ -30,16 +30,16 @@
 
 .score {
   font-size: 28px;
-}
-
-.vs {
-  color: var(--ink-faint);
-  font-size: 13px;
-  font-weight: 600;
+  color: var(--accent-deep);
 }
 
 .event {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }

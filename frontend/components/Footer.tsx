@@ -28,6 +28,7 @@ export default function Footer() {
             <strong className="eyebrow">Explore</strong>
             <Link href="/">Dashboard</Link>
             <Link href="/live-match">Live Match</Link>
+            <Link href="/goat-audit">GOAT Audit</Link>
             <Link href="/analytics">Analytics</Link>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Leaderboard from "@/components/Leaderboard";
+import { LeaderboardRowsSkeleton } from "./DashboardSkeletons";
 
 export default function LeaderboardPreview() {
   return (
@@ -13,7 +14,7 @@ export default function LeaderboardPreview() {
         <span className="chip pink">Live Data</span>
       </div>
 
-      <Suspense fallback={<p className="muted">Loading rankings...</p>}>
+      <Suspense fallback={<LeaderboardRowsSkeleton />}>
         <Leaderboard limit={5} />
       </Suspense>
 
