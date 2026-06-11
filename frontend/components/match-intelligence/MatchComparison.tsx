@@ -83,7 +83,16 @@ export default function MatchComparison({ players }: MatchComparisonProps) {
             <span className={styles.nameB}>{b.name}</span>
           </div>
 
-          <div className={styles.rows}>
+          <div
+            className={styles.rows}
+            role="img"
+            aria-label={`Comparison of ${a.name} versus ${b.name} across ${METRICS.length} metrics: ${METRICS.map(
+              (m) =>
+                `${m.label} — ${a.name} ${m.format ? m.format(m.get(a)) : m.get(a)}, ${b.name} ${
+                  m.format ? m.format(m.get(b)) : m.get(b)
+                }`
+            ).join("; ")}.`}
+          >
             {METRICS.map((m) => {
               const va = m.get(a);
               const vb = m.get(b);

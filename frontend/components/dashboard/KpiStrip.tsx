@@ -1,12 +1,12 @@
 import KPICard from "./KPICard";
-import { getLeaderboard, getStatsSummary } from "@/lib/api";
+import { getDashboardLeaderboard, getStatsSummary } from "@/lib/api";
 import { lastName } from "@/lib/format";
 import styles from "./KpiStrip.module.css";
 
 export default async function KpiStrip() {
   const [stats, leaderboard] = await Promise.all([
     getStatsSummary(),
-    getLeaderboard(10, 10),
+    getDashboardLeaderboard(),
   ]);
 
   const topPlayer = leaderboard[0];
@@ -21,19 +21,23 @@ export default async function KpiStrip() {
     <div className={styles.strip}>
       <KPICard label="Players Audited" value={stats.total_players.toLocaleString()} />
       <KPICard label="Average BGPI" value={stats.avg_bgpi.toFixed(1)} />
-      {topPlayer && (
+      {topPlayer ? (
         <KPICard
           label="Most Clutch Player"
           value={lastName(topPlayer.name)}
           hint={`BGPI ${topPlayer.big_game_bgpi}`}
         />
+      ) : (
+        <KPICard label="Most Clutch Player" value="—" hint="Not enough data yet" />
       )}
-      {biggestRiser && biggestRiser.big_game_uplift != null && (
+      {biggestRiser && biggestRiser.big_game_uplift != null ? (
         <KPICard
           label="Biggest Riser"
           value={lastName(biggestRiser.name)}
           hint={`+${biggestRiser.big_game_uplift} vs regular form`}
         />
+      ) : (
+        <KPICard label="Biggest Riser" value="—" hint="Not enough data yet" />
       )}
     </div>
   );

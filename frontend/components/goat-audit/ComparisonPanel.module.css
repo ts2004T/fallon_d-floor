@@ -5,7 +5,7 @@
   margin-top: 18px;
 }
 
-@media (max-width: 820px) {
+@media (--bp-820) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -52,7 +52,7 @@
   color: var(--ink-faint);
 }
 
-@media (max-width: 820px) {
+@media (--bp-820) {
   .vs {
     padding: 4px 0;
   }

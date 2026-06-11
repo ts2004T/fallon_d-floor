@@ -32,7 +32,7 @@
   gap: 24px;
 }
 
-@media (max-width: 880px) {
+@media (--bp-880) {
   .grid2 {
     grid-template-columns: 1fr;
   }

@@ -12,7 +12,7 @@
   gap: 24px;
 }
 
-@media (max-width: 820px) {
+@media (--bp-820) {
   .grid {
     grid-template-columns: 1fr;
   }

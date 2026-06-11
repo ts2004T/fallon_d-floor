@@ -22,7 +22,7 @@
   align-items: center;
 }
 
-@media (max-width: 880px) {
+@media (--bp-880) {
   .body {
     grid-template-columns: 1fr;
   }

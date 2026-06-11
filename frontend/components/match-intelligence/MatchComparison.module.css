@@ -124,7 +124,7 @@
   text-align: center;
 }
 
-@media (max-width: 640px) {
+@media (--bp-640) {
   .row {
     grid-template-columns: 1fr 90px 1fr;
   }

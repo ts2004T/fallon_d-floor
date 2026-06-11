@@ -5,7 +5,7 @@
   align-items: stretch;
 }
 
-@media (max-width: 880px) {
+@media (--bp-880) {
   .row {
     grid-template-columns: 1fr;
   }

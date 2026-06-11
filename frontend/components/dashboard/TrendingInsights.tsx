@@ -1,10 +1,10 @@
-import { getLeaderboard } from "@/lib/api";
+import { getDashboardLeaderboard } from "@/lib/api";
 import { lastName } from "@/lib/format";
 import InsightCard from "./InsightCard";
 import styles from "./TrendingInsights.module.css";
 
 export default async function TrendingInsights() {
-  const leaderboard = await getLeaderboard(10, 10);
+  const leaderboard = await getDashboardLeaderboard();
 
   const xgOverperformer = leaderboard.reduce((best, p) => {
     const diff = p.total_goals - p.total_xg;
@@ -18,6 +18,18 @@ export default async function TrendingInsights() {
     return p.big_game_uplift < worst.big_game_uplift ? p : worst;
   }, undefined as (typeof leaderboard)[number] | undefined);
 
+  const hasMerchant = statMerchant && statMerchant.big_game_uplift != null;
+
+  if (!xgOverperformer && !hasMerchant) {
+    return (
+      <div className={styles.stack}>
+        <InsightCard eyebrow="📊 Trending Insights">
+          Trending insights will appear here once enough matches have been audited.
+        </InsightCard>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.stack}>
       {xgOverperformer && (
@@ -30,10 +42,10 @@ export default async function TrendingInsights() {
         </InsightCard>
       )}
 
-      {statMerchant && statMerchant.big_game_uplift != null && (
+      {hasMerchant && (
         <InsightCard eyebrow="📉 Stat Merchant Alert" href="/goat-audit" linkLabel="Run GOAT Audit →">
-          {lastName(statMerchant.name)}&apos;s Big Game BGPI drops{" "}
-          <span className="down">{statMerchant.big_game_uplift}</span>{" "}
+          {lastName(statMerchant!.name)}&apos;s Big Game BGPI drops{" "}
+          <span className="down">{statMerchant!.big_game_uplift}</span>{" "}
           compared to their regular form — numbers that don&apos;t hold up on a rainy Tuesday.
         </InsightCard>
       )}

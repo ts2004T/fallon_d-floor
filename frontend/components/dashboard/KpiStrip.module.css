@@ -4,13 +4,13 @@
   gap: 18px;
 }
 
-@media (max-width: 880px) {
+@media (--bp-880) {
   .strip {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (--bp-480) {
   .strip {
     grid-template-columns: 1fr;
   }

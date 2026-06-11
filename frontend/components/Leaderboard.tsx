@@ -1,4 +1,4 @@
-import { getLeaderboard } from "@/lib/api";
+import { getDashboardLeaderboard } from "@/lib/api";
 import { initials, lastName } from "@/lib/format";
 
 const AVATAR_VARIANTS = ["a1", "a2", "a3", "a4", "a5"];
@@ -8,7 +8,7 @@ interface LeaderboardProps {
 }
 
 export default async function Leaderboard({ limit = 10 }: LeaderboardProps) {
-  const players = (await getLeaderboard(10, 10)).slice(0, limit);
+  const players = (await getDashboardLeaderboard()).slice(0, limit);
 
   return (
     <div>

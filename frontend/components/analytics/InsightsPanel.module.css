@@ -21,13 +21,13 @@
   gap: 18px;
 }
 
-@media (max-width: 880px) {
+@media (--bp-880) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 600px) {
+@media (--bp-600) {
   .grid {
     grid-template-columns: 1fr;
   }

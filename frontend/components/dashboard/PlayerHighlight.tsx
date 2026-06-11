@@ -1,11 +1,20 @@
-import { getLeaderboard } from "@/lib/api";
+import { getDashboardLeaderboard } from "@/lib/api";
 import { initials, lastName } from "@/lib/format";
 
 export default async function PlayerHighlight() {
-  const leaderboard = await getLeaderboard(10, 10);
+  const leaderboard = await getDashboardLeaderboard();
   const player = leaderboard[0];
 
-  if (!player) return null;
+  if (!player) {
+    return (
+      <div className="card pad hoverable reveal" style={{ height: "100%" }}>
+        <div className="eyebrow">⭐ Player of the Day</div>
+        <p className="muted" style={{ marginTop: 16, fontSize: 14.5, lineHeight: 1.6 }}>
+          Player highlights will appear here once enough matches have been audited.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="card pad hoverable reveal" style={{ height: "100%" }}>

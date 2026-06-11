@@ -144,7 +144,7 @@ a{color:inherit;text-decoration:none;}
 .nav.open .nav-burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 .nav-mobile{display:none;}
 
-@media (max-width:880px){
+@media (--bp-880){
   .navlinks{display:none;}
   .nav-burger{display:flex;}
   .nav-mobile{display:none;position:absolute;top:100%;left:0;right:0;
@@ -198,6 +198,8 @@ a{color:inherit;text-decoration:none;}
 .bgpi{font-family:var(--font-num);font-weight:700;color:var(--accent-deep);line-height:.9;font-variant-numeric:tabular-nums;}
 .up{color:var(--positive);font-weight:700;font-family:var(--font-num);}
 .down{color:var(--negative);font-weight:700;font-family:var(--font-num);}
+.up::before{content:"▲ ";font-size:.78em;}
+.down::before{content:"▼ ";font-size:.78em;}
 
 /* ---------- avatars / crests ---------- */
 .av{border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;
@@ -238,6 +240,6 @@ a{color:inherit;text-decoration:none;}
 @keyframes rise{from{transform:translateY(12px);}to{transform:none;}}
 @media (prefers-reduced-motion:reduce){.live .dot{animation:none;}}
 
-@media (max-width:880px){
+@media (--bp-880){
   .sec-h{font-size:22px;}
 }

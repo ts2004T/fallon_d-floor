@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 // Used for both server-side fetches (Next.js server -> API) and the
 // client-side fetch in PlayerDrilldown (browser -> API). In production,
 // NEXT_PUBLIC_API_URL must point to a publicly reachable, CORS-enabled
@@ -33,6 +35,10 @@ export async function getLeaderboard(limit = 10, minMatches = 10): Promise<Leade
   const data = await res.json();
   return data.leaderboard;
 }
+
+// Shared by the dashboard widgets (KpiStrip, PlayerHighlight, TrendingInsights,
+// Leaderboard), which all request the same top-10 leaderboard slice.
+export const getDashboardLeaderboard = cache(() => getLeaderboard(10, 10));
 
 export async function getStatsSummary(): Promise<StatsSummary> {
   const res = await fetch(`${API_URL}/api/stats/summary`, {

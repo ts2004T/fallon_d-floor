@@ -112,7 +112,7 @@
   border: 0;
 }
 
-@media (max-width: 640px) {
+@media (--bp-640) {
   .row {
     grid-template-columns: 100px 1fr 40px;
   }

@@ -29,13 +29,13 @@
   border: 1px dashed var(--line-strong);
 }
 
-@media (max-width: 980px) {
+@media (--bp-980) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 600px) {
+@media (--bp-600) {
   .grid {
     grid-template-columns: 1fr;
   }
