@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--card-2);
+}
+
+.name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.position {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.bgpiRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 8px 0 6px;
+}
+
+.explanation {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}

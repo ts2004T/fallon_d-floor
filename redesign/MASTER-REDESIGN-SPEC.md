@@ -351,3 +351,112 @@ Keep the page's structure (head → BGPI explainer → 2-col chart grid → full
 7. Verify: contrast checks on every text/accent pair, light+dark screenshots of all four pages.
 
 **Open questions before I write code:** (a) Dashboard vs Home naming — go with Dashboard? (b) Keep handwritten display font or switch to a cleaner face? (c) Should the standalone single-file build remain the deliverable, or the split `fallon/` pages?
+
+## Product Roadmap Clarification
+
+The StatPadder experience is organized into distinct product layers.
+
+### Dashboard
+
+Purpose:
+
+Provide a high-level overview of the football analytics ecosystem.
+
+Focus:
+
+- Discovery
+- Highlights
+- Navigation
+- Trending insights
+
+---
+
+### GOAT Audit
+
+Purpose:
+
+Evaluate players through BGPI and ranking systems.
+
+Focus:
+
+- Rankings
+- Comparisons
+- Verdicts
+- Player evaluation
+
+---
+
+### Analytics
+
+Purpose:
+
+Explain performance through statistical evidence.
+
+Focus:
+
+- Visualizations
+- Insights
+- Trends
+- Methodology
+
+---
+
+### Match Intelligence Center
+
+Purpose:
+
+Analyze individual matches using StatPadder metrics.
+
+Focus:
+
+- Match narratives
+- Key performers
+- Match importance
+- Player impact
+- Match-level insights
+
+This section should prioritize football intelligence over score tracking.
+
+StatPadder is not intended to replicate Sofascore, Fotmob, or Flashscore.
+
+The objective is to explain what happened and why it mattered.
+
+---
+
+### Real-Time Match Intelligence (Future Phase)
+
+Purpose:
+
+Extend Match Intelligence into a live experience.
+
+Potential future capabilities:
+
+- Live event ingestion
+- Real-time BGPI updates
+- Live player rankings
+- Dynamic match narratives
+- Streaming analytics
+
+This phase requires additional infrastructure and data providers.
+
+Examples:
+
+- API-Football
+- Sportmonks
+- Football-Data APIs
+
+Real-Time Match Intelligence is considered an advanced future capability and is not required for the core StatPadder product.
+
+---
+
+### Product Philosophy
+
+StatPadder should prioritize:
+
+Insight → Analysis → Understanding
+
+rather than:
+
+Scores → Fixtures → Notifications
+
+The product should be remembered for its football intelligence, not for replicating existing score-tracking applications.

@@ -1,0 +1,85 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.matchup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 3.4vw, 32px);
+  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.team {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.matchup .team:first-child {
+  text-align: right;
+}
+
+.matchup .team:last-child {
+  text-align: left;
+}
+
+.score {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-deep);
+  flex: 0 0 auto;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.metaValue {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .matchup {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .matchup .team:first-child,
+  .matchup .team:last-child {
+    text-align: center;
+  }
+
+  .meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}

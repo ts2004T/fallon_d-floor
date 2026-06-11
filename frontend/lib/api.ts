@@ -74,3 +74,74 @@ export async function getPlayer(playerId: number): Promise<PlayerDetailResponse>
   if (!res.ok) throw new Error("Failed to fetch player");
   return res.json();
 }
+
+export interface MatchSummary {
+  match_id: number;
+  match_date: string | null;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
+  round_type: string;
+  match_importance_score: number;
+  season: string;
+  competition: string;
+  tracked_players: number;
+}
+
+export interface MatchInfo {
+  match_id: number;
+  match_date: string | null;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
+  round_type: string;
+  match_importance_score: number;
+  season: string;
+  competition: string;
+  country: string;
+}
+
+export interface MatchPlayerStat {
+  player_id: number;
+  name: string;
+  position: string;
+  goals: number;
+  assists: number;
+  xg: number;
+  xa: number;
+  shots_on_target: number;
+  key_passes: number;
+  minutes_played: number;
+  penalty_miss: boolean;
+  red_card: boolean;
+  goals_score: number;
+  assists_score: number;
+  xg_efficiency: number;
+  match_winning_impact: number;
+  bgpi: number;
+  big_game_uplift: number | null;
+}
+
+export interface MatchDetailResponse {
+  match: MatchInfo;
+  players: MatchPlayerStat[];
+}
+
+export async function getMatches(limit = 30): Promise<MatchSummary[]> {
+  const res = await fetch(`${API_URL}/api/matches?limit=${limit}`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) throw new Error("Failed to fetch matches");
+  const data = await res.json();
+  return data.matches;
+}
+
+export async function getMatch(matchId: number): Promise<MatchDetailResponse> {
+  const res = await fetch(`${API_URL}/api/match/${matchId}`, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) throw new Error("Failed to fetch match");
+  return res.json();
+}
